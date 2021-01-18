@@ -5,3 +5,5 @@
 *.iml
 *.ipr
 *.iws
+
+/resources/ktor-firebase-auth-firebase-adminsdk.json
