@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "io.robothouse.ktorfirebaseauth"
-version = "0.0.1"
+version = "1.0.0"
 
 application {
   mainClassName = "io.ktor.server.netty.EngineMain"
