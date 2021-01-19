@@ -50,7 +50,11 @@ fun Authentication.Configuration.firebase(
       provider.principle?.let { it.invoke(uid)?.let { principle -> context.principal(principle) } }
 
     } catch (cause: Throwable) {
-      val message = "Authentication failed: ${cause.message ?: cause.javaClass.simpleName}"
+      val message = if (cause is FirebaseAuthException) {
+        "Authentication failed: ${cause.message ?: cause.javaClass.simpleName}"
+      } else {
+        cause.message ?: cause.javaClass.simpleName
+      }
       firebaseAuthLogger.trace(message)
       call.respond(HttpStatusCode.Unauthorized, message)
       context.challenge.complete()

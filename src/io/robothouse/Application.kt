@@ -11,6 +11,7 @@ import io.ktor.routing.*
 import io.robothouse.auth.firebase.firebase
 import io.robothouse.config.firebase.AuthConfig.configure
 import io.robothouse.config.firebase.FirebaseAdmin
+import io.robothouse.model.User
 import org.slf4j.event.Level
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -35,7 +36,7 @@ fun Application.module() {
 
     authenticate {
       get("/authenticated") {
-        call.respond(HttpStatusCode.OK, "I'm working just fine, and I'm authenticated!")
+        call.respond(HttpStatusCode.OK, "My name is ${call.principal<User>()?.username}, and I'm authenticated!")
       }
     }
   }
